@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "createcomputers:block/example_block" }
+  }
+}

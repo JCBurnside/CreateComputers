@@ -6,23 +6,29 @@ loaderVersion="[3,)" # Require at least 3.x
 license='LGPL'
 
 [[mods]]
-modId="examplemod"
+modId="createcomputers"
 version="${file.jarVersion}"
-displayName="ExampleMod"
+displayName="CreateComputers"
 credits="The ExampleMod dev team"
 authors="ExampleModAuthor"
 description='''
 Example mod that uses Kotlin for Forge.
 '''
-[[dependencies.examplemod]]
+[[dependencies.createcomputers]]
     modId="forge"
     mandatory=true
-    versionRange="[41,)"
+    versionRange="[40,)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.examplemod]]
+[[dependencies.createcomputers]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19,1.20)"
+    versionRange="[1.18,1.19)"
     ordering="NONE"
     side="BOTH"
+[[dependencies.createcomputers]]
+    modId = "computercraft"
+    mandatory = true
+    versionRange = "[1.100.9,)"
+    ordering = "NONE"
+    side = "BOTH"

@@ -1,6 +1,5 @@
-package example.examplemod
+package pixellabs.minecraftmods
 
-import example.examplemod.block.ModBlocks
 import net.minecraft.client.Minecraft
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent
@@ -18,18 +17,17 @@ import thedarkcolour.kotlinforforge.forge.runForDist
  *
  * An example for blocks is in the `blocks` package of this mod.
  */
-@Mod(ExampleMod.ID)
-object ExampleMod {
-    const val ID = "examplemod"
+@Mod(CreateComputers.ID)
+object CreateComputers {
+    const val ID = "createcomputers"
 
     // the logger for our mod
     val LOGGER: Logger = LogManager.getLogger(ID)
-
     init {
         LOGGER.log(Level.INFO, "Hello world!")
 
         // Register the KDeferredRegister to the mod-specific event bus
-        ModBlocks.REGISTRY.register(MOD_BUS)
+        Registration.register(MOD_BUS)
 
         val obj = runForDist(
             clientTarget = {

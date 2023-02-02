@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "createcomputers:block/testing_api_block" }
+  }
+}
