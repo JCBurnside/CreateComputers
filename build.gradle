@@ -90,6 +90,10 @@ repositories {
     maven {
         url "https://squiddev.cc/maven/"
     }
+    maven {
+        name = 'tterrag maven'
+        url = 'https://maven.tterrag.com/'
+    }
 }
 
 dependencies {
@@ -99,6 +103,11 @@ dependencies {
     implementation 'thedarkcolour:kotlinforforge:3.9.1'
 
     implementation(fg.deobf("org.squiddev:cc-tweaked-1.18.2:${cctVersion}"))
+
+    implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }
+    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
+    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+
 }
 
 compileKotlin {
