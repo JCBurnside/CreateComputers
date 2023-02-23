@@ -11,7 +11,7 @@ import pixellabs.minecraftmods.tileentities.TestingAPITileEntity
 
 class TestingPeripheral(private val te : TestingAPITileEntity) : IPeripheral {
 
-    val connectedComputers = mutableListOf<IComputerAccess>()
+    private val connectedComputers = mutableListOf<IComputerAccess>()
 
     override fun attach(computer: IComputerAccess) {
         connectedComputers.add(computer)

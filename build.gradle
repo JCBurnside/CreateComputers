@@ -24,10 +24,11 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'examplemod'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
-                examplemod {
+                createcomputers {
                     source sourceSets.main
                 }
             }
@@ -39,9 +40,11 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             property 'forge.enabledGameTestNamespaces', 'examplemod'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
             mods {
-                examplemod {
+                createcomputers {
                     source sourceSets.main
                 }
             }
@@ -55,7 +58,7 @@ minecraft {
             property 'forge.enabledGameTestNamespaces', 'examplemod'
 
             mods {
-                examplemod {
+                createcomputers {
                     source sourceSets.main
                 }
             }
@@ -67,10 +70,12 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
 
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
             args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources')
 
             mods {
-                examplemod {
+                createcomputers {
                     source sourceSets.main
                 }
             }
@@ -103,11 +108,12 @@ dependencies {
     implementation 'thedarkcolour:kotlinforforge:3.9.1'
 
     implementation(fg.deobf("org.squiddev:cc-tweaked-1.18.2:${cctVersion}"))
-
-    implementation fg.deobf("com.simibubi.create:create-${create_minecraft_version}:${create_version}:slim") { transitive = false }
-    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-${flywheel_minecraft_version}:${flywheel_version}")
-    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
-
+//
+//    implementation fg.deobf("com.simibubi.create:create-1.18.2:${create_version}:slim") { transitive = false }
+//    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-1.18.2:${flywheel_version}")
+//    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+//    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+//    testAnnotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 }
 
 compileKotlin {
@@ -117,8 +123,8 @@ compileKotlin {
 jar {
     manifest {
         attributes([
-                'Specification-Title': "examplemod",
-                'Specification-Vendor': "examplemodsareus",
+                'Specification-Title': "createcomputers",
+                'Specification-Vendor': "yes",
                 'Specification-Version': "1", // We are version 1 of ourselves
                 'Implementation-Title': project.name,
                 'Implementation-Version': project.version,
