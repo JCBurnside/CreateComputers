@@ -1,32 +1,53 @@
 package pixellabs.minecraftmods
 
-import com.google.common.collect.Sets
-import net.minecraft.world.item.BlockItem
-import net.minecraft.world.item.Item
-import net.minecraft.world.level.block.Block
-import net.minecraft.world.level.block.entity.BlockEntityType
-import net.minecraftforge.eventbus.api.IEventBus
-import net.minecraftforge.registries.DeferredRegister
-import net.minecraftforge.registries.ForgeRegistries
-import pixellabs.minecraftmods.block.TestingAPIBlock
-import pixellabs.minecraftmods.tileentities.TestingAPITileEntity
-import thedarkcolour.kotlinforforge.forge.registerObject
+import com.jozufozu.flywheel.api.MaterialManager
+import com.jozufozu.flywheel.backend.instancing.blockentity.BlockEntityInstance
+import com.simibubi.create.content.AllSections
+import com.simibubi.create.content.contraptions.relays.encased.ShaftInstance
+import com.simibubi.create.content.contraptions.relays.encased.ShaftRenderer
+import com.simibubi.create.foundation.block.BlockStressDefaults
+import com.simibubi.create.foundation.data.SharedProperties
+import com.tterrag.registrate.util.nullness.NonNullFunction
+import com.tterrag.registrate.util.nullness.NonNullSupplier
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider
+import net.minecraft.tags.BlockTags
+import net.minecraft.world.level.material.MaterialColor
+import pixellabs.minecraftmods.block.CreateTestBlock
+import pixellabs.minecraftmods.tileentities.CreateBlockEntity
+import pixellabs.minecraftmods.tileentities.TestingCreateBlockEntityInstance
+import pixellabs.minecraftmods.tileentities.TestingCreateBlockEntityRenderer
+import java.util.function.BiFunction
+
 object Registration {
 
+
     val TAB = CreateComputersTab()
-    val BLOCK_REGISTRY : DeferredRegister<Block> = DeferredRegister.create(ForgeRegistries.BLOCKS, CreateComputers.ID)
-    val ITEM_REGISTRY : DeferredRegister<Item> = DeferredRegister.create(ForgeRegistries.ITEMS, CreateComputers.ID)
-    val TE_REGISTRY : DeferredRegister<BlockEntityType<*>> = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, CreateComputers.ID)
+
+    init {
+        CreateComputers.CREATE_REGISTRE.creativeModeTab { TAB }
+        Registrate.creativeModeTab { TAB }
+    }
 // the returned ObjectHolderDelegate can be used as a property delegate
 // this is automatically registered by the deferred registry at the correct times
 
+    val TESTING_CREATE_SHAFT = Registrate
+        .block<CreateTestBlock>("testing_shaft_block", CreateTestBlock::test_block)
+        .initialProperties(SharedProperties::softMetal)
+        .properties { p-> p.color(MaterialColor.COLOR_BLACK) }
+        .transform(BlockStressDefaults.setNoImpact())
+        .transform { it.tag(BlockTags.MINEABLE_WITH_PICKAXE)}
+        .simpleItem()
+        .register()
 
-
-
-    fun register(bus: IEventBus) {
-        TE_REGISTRY.register(bus)
-        BLOCK_REGISTRY.register(bus)
-
-        ITEM_REGISTRY.register(bus)
+    val TESTING_CREATE_SHAFT_ENTITY = Registrate
+        .te("testing_shaft_entity", ::CreateBlockEntity)
+        .renderer(::TestingCreateBlockEntityRenderer)
+        .instance(NonNullSupplier.of{ ::ShaftInstance as BiFunction<MaterialManager,CreateBlockEntity,BlockEntityInstance<in CreateBlockEntity>> })
+        .validBlocks(TESTING_CREATE_SHAFT)
+        .register()
+    fun register() {
+        CreateComputers.CREATE_REGISTRE.addToSection(TESTING_CREATE_SHAFT,AllSections.KINETICS)
     }
 }
+

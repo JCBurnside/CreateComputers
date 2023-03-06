@@ -9,11 +9,14 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import thedarkcolour.kotlinforforge.forge.MOD_BUS
 import thedarkcolour.kotlinforforge.forge.runForDist
-
+import com.simibubi.create.foundation.data.CreateRegistrate
+import thedarkcolour.kotlinforforge.forge.FORGE_BUS
 
 @Mod(CreateComputers.ID)
 object CreateComputers {
+
     const val ID = "createcomputers"
+    val CREATE_REGISTRE = CreateRegistrate.create(ID)
 
     // the logger for our mod
     val LOGGER: Logger = LogManager.getLogger(ID)
@@ -21,8 +24,9 @@ object CreateComputers {
         LOGGER.log(Level.INFO, "Hello world!")
 
         // Register the KDeferredRegister to the mod-specific event bus
-        Registration.register(MOD_BUS)
-
+        Registrate.registerEventListeners(MOD_BUS)
+        CREATE_REGISTRE.registerEventListeners(MOD_BUS)
+        Registration.register()//legit only here to force the object to load.
         val obj = runForDist(
             clientTarget = {
                 MOD_BUS.addListener(::onClientSetup)

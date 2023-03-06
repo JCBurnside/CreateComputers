@@ -2,5 +2,6 @@
   "itemGroup.createcomputers.TabName" : "Create Computers",
   "item.createcomputers.ITEM_NAME" : "Example Block",
   "block.createcomputers.example_block" : "Example Block",
-  "block.createcomputers.testing_api_block" : "API Block"
+  "block.createcomputers.testing_api_block" : "API Block",
+  "block.createcomputers.testing_shaft_block" : "Speed/Rotation reader"
 }

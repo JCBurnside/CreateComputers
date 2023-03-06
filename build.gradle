@@ -105,15 +105,15 @@ dependencies {
     // Use the latest version of Minecraft Forge
     minecraft 'net.minecraftforge:forge:1.18.2-40.2.0'
 
-    implementation 'thedarkcolour:kotlinforforge:3.9.1'
+    implementation 'thedarkcolour:kotlinforforge:3.10.0'
 
     implementation(fg.deobf("org.squiddev:cc-tweaked-1.18.2:${cctVersion}"))
-//
-//    implementation fg.deobf("com.simibubi.create:create-1.18.2:${create_version}:slim") { transitive = false }
-//    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-1.18.2:${flywheel_version}")
-//    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
-//    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
-//    testAnnotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+
+    implementation fg.deobf("com.simibubi.create:create-1.18.2:${create_version}:slim") { transitive = false }
+    implementation fg.deobf("com.jozufozu.flywheel:flywheel-forge-1.18.2:${flywheel_version}")
+    implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
+    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+    testAnnotationProcessor "org.spongepowered:mixin:0.8.5:processor"
 }
 
 compileKotlin {
