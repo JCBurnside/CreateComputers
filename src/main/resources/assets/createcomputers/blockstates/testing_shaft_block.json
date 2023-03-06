@@ -1,0 +1,17 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "createcomputers:block/testing_shaft_block",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "createcomputers:block/testing_shaft_block"
+    },
+    "axis=z": {
+      "model": "createcomputers:block/testing_shaft_block",
+      "x": 90,
+      "y": 180
+    }
+  }
+}
